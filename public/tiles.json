@@ -728,13 +728,6 @@
     "lng": -0.3295888888888889
   },
   {
-    "name": "IMG_3657.JPG",
-    "thumbnail": "./tiles_small/IMG_3657.JPG",
-    "marker": "./tiles_markers/IMG_3657.JPG",
-    "lat": 39.47349444444445,
-    "lng": -0.3294916666666666
-  },
-  {
     "name": "IMG_3658.JPG",
     "thumbnail": "./tiles_small/IMG_3658.JPG",
     "marker": "./tiles_markers/IMG_3658.JPG",
@@ -803,13 +796,6 @@
     "marker": "./tiles_markers/IMG_3668.JPG",
     "lat": 39.47336388888889,
     "lng": -0.32860555555555554
-  },
-  {
-    "name": "IMG_3669.JPG",
-    "thumbnail": "./tiles_small/IMG_3669.JPG",
-    "marker": "./tiles_markers/IMG_3669.JPG",
-    "lat": 39.47347222222223,
-    "lng": -0.32928888888888885
   },
   {
     "name": "IMG_3676.JPG",

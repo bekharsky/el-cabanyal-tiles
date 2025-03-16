@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "./App.css";
 
 const TILE_DATA_URL = "./tiles.json";
 
@@ -11,8 +12,8 @@ function FitBounds({ tiles }) {
   useEffect(() => {
     if (tiles.length > 0) {
       const sortedTiles = [...tiles].sort((a, b) => a.lat - b.lat || a.lng - b.lng);
-      const majorityStart = Math.floor(tiles.length * 0.1);
-      const majorityEnd = Math.ceil(tiles.length * 0.9);
+      const majorityStart = Math.floor(tiles.length * 0.3);
+      const majorityEnd = Math.ceil(tiles.length * 0.7);
       const majorityTiles = sortedTiles.slice(majorityStart, majorityEnd);
       const bounds = L.latLngBounds(majorityTiles.map(({ lat, lng }) => [lat, lng]));
       map.fitBounds(bounds, { padding: [50, 50] });
@@ -91,41 +92,37 @@ export default function TileMap() {
   }, []);
 
   return (
-    <div style={{ position: "relative" }}>
+    <>
       <MapContainer
-        style={{ height: "100vh", width: "100%" }}
+        style={{ height: "100vh", width: "100vw" }}
         zoom={14}
-        zoomControl={false}
+        keyboard={false}
       >
         <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
         <FitBounds tiles={tiles} />
         <KeyboardNavigation tiles={tiles} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
-        {tiles.map(({ name, thumbnail, marker, lat, lng }, index) => (
+        {tiles.map(({ name, marker, lat, lng }, index) => (
           <Marker key={name} position={[lat, lng]}
             icon={L.icon({
               iconUrl: marker,
-              iconSize: [40, 50],
-              iconAnchor: [20, 50]
+              iconSize: index === currentIndex ? [80, 100] : [40, 50],
+              iconAnchor: index === currentIndex ? [40, 100] : [20, 50]
             })}
+            keyboard={false}
             eventHandlers={{
               click: () => setCurrentIndex(index)
             }}
+            zIndexOffset={index === currentIndex ? 10000 : 0}
           />
         ))}
       </MapContainer>
+
       {currentIndex !== null && (
-        <div style={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          background: "rgba(255, 255, 255, 0.8)",
-          padding: "10px",
-          borderRadius: "8px"
-        }}>
-          <img src={tiles[currentIndex].thumbnail} alt={tiles[currentIndex].name} style={{ width: "150px", borderRadius: "8px" }} />
+        <aside className="thumb">
+          <img src={tiles[currentIndex].thumbnail} alt={tiles[currentIndex].name} />
           <p>{tiles[currentIndex].name}</p>
-        </div>
+        </aside>
       )}
-    </div>
+    </>
   );
 }
