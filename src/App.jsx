@@ -120,7 +120,6 @@ export default function TileMap() {
       {currentIndex !== null && (
         <aside className="thumb">
           <img src={tiles[currentIndex].thumbnail} alt={tiles[currentIndex].name} />
-          <p>{tiles[currentIndex].name}</p>
         </aside>
       )}
     </>
