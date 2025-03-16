@@ -826,13 +826,6 @@
     "lng": -0.32808055555555554
   },
   {
-    "name": "IMG_3713.JPG",
-    "thumbnail": "./tiles_small/IMG_3713.JPG",
-    "marker": "./tiles_markers/IMG_3713.JPG",
-    "lat": 39.470819444444444,
-    "lng": -0.32833888888888885
-  },
-  {
     "name": "IMG_3716.JPG",
     "thumbnail": "./tiles_small/IMG_3716.JPG",
     "marker": "./tiles_markers/IMG_3716.JPG",
